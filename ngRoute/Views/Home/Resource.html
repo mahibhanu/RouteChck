@@ -1,0 +1,78 @@
+﻿    <div ng-app="TFSApp" class="row">
+        <div ng-controller="Resource as RS">
+            <br />
+            <h1 class="bg-primary"> Resource Wise Effort</h1>
+            <br />
+            <div class="col-md-12" style="margin-bottom:5px;">
+                   <div class="DateContainer">
+                    <!-- Date input -->
+                    <label class="col-md-2" for="date" style="width:110px;" >Start Date:</label>
+                    <input class="col-md-3" id="Startdate" name="date" placeholder="MM/DD/YYY" type="text" ng-model="StartDate" />
+
+                </div>
+                <div class="DateContainer">
+                    <!-- Date input -->
+                    <label class="col-md-2" for="date" style="width:110px;">End Date:</label>
+                    <input class="col-md-3" id="EndDate" name="date" placeholder="MM/DD/YYY" type="text" ng-model="EndDate" />
+
+                </div>
+                <div class="col-md-2">
+                    <button type="button" ng-click="search()">Search </button>
+                </div>
+            </div>
+
+            <br />
+            <div class="col-md-12" style="padding:5px;margin-bottom:10px;background-color:teal;color:white;" ng-show="gridShow">
+                <span class="col-md-5">Resource name</span>
+                <span class="col-md-5">Effort</span>
+
+            </div>
+            <div ng-repeat="(OwnedBy, value) in (Resources | groupBy: 'OwnedBy')" class="col-md-12">
+                <div class="panel" style="border:none !important;">
+                    <div class="col-md-12 panel-heading clickable panel-collapsed">
+                        <div class="col-md-12 panel-title">
+                            <span class="col-md-5">{{ OwnedBy }}</span>
+                            <span class="col-md-5">{{ getTotalEffort(value); }}</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                            <!--<span class="pull-right"><i class="glyphicon glyphicon-plus" ng-model="GetData(OwnedBy)"></i></span>-->
+                        </div>
+                    </div>
+                    <div class="col-md-12 bg-info text-white panel-body" style="display:none;margin-bottom:15px;">
+                        <span class="col-md-2">WorkItem ID</span>
+                        <span class="col-md-2">WorkItem Type</span>
+                        <span class="col-md-2">Belongs To</span>
+                        <span class="col-md-3">Application Name</span>
+                        <span class="col-md-1">Effort</span>
+
+                        <div ng-repeat="r in value" class="col-md-12 panel-body" style="border:none !important;color:black;background-color:white !important;">
+                            <span class="col-md-2">{{r.ID}}</span>
+                            <span class="col-md-2">{{r.Type}}</span>
+                            <span class="col-md-2">{{r.Mode}}</span>
+                            <span class="col-md-3">{{r.Application}}  </span>
+                            <span class="col-md-1" style="text-align:center;">{{r.Completed_Work_Agg}}  </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!gridShow">
+                <div class="col-md-12" style="padding:5px;margin-bottom:10px;">
+                    <span class="col-md-5">{{status}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    $(document).ready(function () {
+        debugger;
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.DateContainer').length > 0 ? $('.DateContainer').parent() : "body";
+        var options = {
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    });
+
+</script>

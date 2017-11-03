@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+
+    <script src="~/TFSConnect.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.DateContainer').length > 0 ? $('.DateContainer').parent() : "body";
+            var options = {
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            };
+            date_input.datepicker(options);
+        })
+        $(document).on('click', '.clickable', function (e) {
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.panel-body').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon glyphicon-minus').addClass('glyphicon glyphicon-plus');
+            } else {
+                $this.parents('.panel').find('.panel-body').show();
+                $this.parents('.panel').find('.panel-body').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon glyphicon-plus').addClass('glyphicon glyphicon-minus');
+
+            }
+        });
+    </script>
+}
+
+<div ng-app="TFSApp" class="row">
+    <div ng-controller="Application as app">
+        <br />
+        <h1 class="bg-primary"> Application Wise Effort</h1>
+        <br />
+        <div class="col-md-12" style="margin-bottom:5px;">
+
+            <div class="DateContainer">
+                <!-- Date input -->
+                <label class="col-md-2" for="date">Start Date:</label>
+                <input class="col-md-3" id="Startdate" name="date" placeholder="MM/DD/YYY" type="text" ng-model="StartDate" />
+
+            </div>
+            <div class="DateContainer">
+                <!-- Date input -->
+                <label class="col-md-2" for="date">End Date:</label>
+                <input class="col-md-3" id="EndDate" name="date" placeholder="MM/DD/YYY" type="text" ng-model="EndDate" />
+
+            </div>
+            <div class="col-md-2 pull-right">
+                <button type="button" ng-click="search()">Search </button>
+            </div>
+        </div>
+
+        <br />
+
+            <div class="col-md-12" style="padding:5px;margin-bottom:10px;background-color:teal;color:white;" ng-show="gridShow">
+                <span class="col-md-5">Application name</span>
+                <span class="col-md-5">Effort</span>
+            </div>
+        <div ng-repeat="(Application, value) in (Applications | groupBy: 'Application')" class="col-md-12">
+            <div class="panel" style="border:none !important;">
+                <div class="col-md-12 panel-heading clickable panel-collapsed">
+                    <div class="col-md-12 panel-title">
+                        <span class="col-md-5">{{ Application }}</span>
+                        <span class="col-md-5">{{ getTotalEffort(value); }}</span>
+                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                    </div>
+
+                </div>
+                <div class="col-md-12 bg-info text-white panel-body" style="display:none;margin-bottom:15px;">
+                    <span class="col-md-2">WorkItem ID</span>
+                    <span class="col-md-2">WorkItem Type</span>
+                    <span class="col-md-2">Belongs To</span>
+                    <span class="col-md-3">Resource Name</span>
+                    <span class="col-md-1">Effort</span>
+
+                    <div ng-repeat="r in value" class="col-md-12 panel-body" style="border:none !important;color:black;background-color:white !important;">
+                        <span class="col-md-2">{{r.ID}}</span>
+                        <span class="col-md-2">{{r.Type}}</span>
+                        <span class="col-md-2">{{r.Mode}}</span>
+                        <span class="col-md-3">{{r.OwnedBy}}  </span>
+                        <span class="col-md-1" style="text-align:center;">{{r.Completed_Work_Agg}}  </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-md-12" style="padding:5px;margin-bottom:10px;" ng-show="!gridShow" >
+                <span class="col-md-5">{{status}}</span>
+            </div>
+    </div>
+
+</div>

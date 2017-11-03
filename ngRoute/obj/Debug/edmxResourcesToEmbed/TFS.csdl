@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TfsConnectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AuditLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LogType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LogDate" Type="DateTime" Precision="3" />
+    <Property Name="SourceEvent" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LogMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SyncID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="Connection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TfsUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Project" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="AppName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="AreaPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="WorkItems" Relationship="Self.FK_WorkItem_WorkItem" FromRole="Connection" ToRole="WorkItem" />
+  </EntityType>
+  <EntityType Name="WorkItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WIID" Type="Int64" />
+    <Property Name="WorkItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AreaPath" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="IterationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Severity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="StoryPoints" Type="Int32" />
+    <Property Name="OriginalEstimate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="CompletedWork" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="RemainingWork" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="AssignedTo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ActivatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ResolvedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ClosedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ActivatedDate" Type="DateTime" Precision="3" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="ResolvedDate" Type="DateTime" Precision="3" />
+    <Property Name="ClosedDate" Type="DateTime" Precision="3" />
+    <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Activity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="udf_ParentLevel" Type="Int16" />
+    <Property Name="udf_PWIID" Type="Int64" />
+    <Property Name="udf_OriginalEstimateAgg" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="udf_CompletedWorkAgg" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="udf_RemainingWorkAgg" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="udf_AppName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="udf_FoundIn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="udf_CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_AssignedTo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_ActivatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_ResolvedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_ClosedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_Owner" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="udf_ConnectionID" Type="Int32" />
+    <Property Name="Risk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReproSteps" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="udf_IsActive" Type="Boolean" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AcceptanceCriteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PWIID" Type="Int64" />
+    <Property Name="udf_TreePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="udf_RevisedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Connection" Relationship="Self.FK_WorkItem_WorkItem" FromRole="WorkItem" ToRole="Connection" />
+  </EntityType>
+  <EntityType Name="WorkItemUpdate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConnectionID" Type="Int32" />
+    <Property Name="WorkItemID" Type="Int64" />
+    <Property Name="RevisedDate" Type="DateTime" Precision="3" />
+    <Property Name="RevisedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="RevNumber" Type="Int32" />
+    <Property Name="FieldName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="OldValue" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="NewValue" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Index" />
+    </Key>
+    <Property Name="Index" Type="Int64" Nullable="false" />
+    <Property Name="Tag1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vWorkItem">
+    <Key>
+      <PropertyRef Name="Index" />
+      <PropertyRef Name="IsParent" />
+    </Key>
+    <Property Name="Activated_Date" Type="DateTime" Precision="3" />
+    <Property Name="ActivatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Application" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="AreaPath" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="AssignedTo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Closed_Date" Type="DateTime" Precision="3" />
+    <Property Name="ClosedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Completed_Work" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Completed_Work_Agg" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Due_Date" Type="DateTime" Precision="3" />
+    <Property Name="Found_In" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int64" />
+    <Property Name="Index" Type="Int64" Nullable="false" />
+    <Property Name="IsParent" Type="Int32" Nullable="false" />
+    <Property Name="Iteration_Path" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Original_Estimate" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Original_Estimate_Agg" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="OwnedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="PID" Type="Int64" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="Project" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remaining_Work" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Remaining_Work_Agg" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Resolved_Date" Type="DateTime" Precision="3" />
+    <Property Name="ResolvedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Severity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Story_Points" Type="Int32" />
+    <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TreePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="602" FixedLength="false" Unicode="false" />
+    <Property Name="udf_ConnectionID" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_WorkItem_WorkItem">
+    <End Role="Connection" Type="Self.Connection" Multiplicity="0..1" />
+    <End Role="WorkItem" Type="Self.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Connection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="udf_ConnectionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TfsConnectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AuditLogs" EntityType="Self.AuditLog" />
+    <EntitySet Name="Connections" EntityType="Self.Connection" />
+    <EntitySet Name="WorkItems" EntityType="Self.WorkItem" />
+    <EntitySet Name="WorkItemUpdates" EntityType="Self.WorkItemUpdate" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
+    <EntitySet Name="vWorkItems" EntityType="Self.vWorkItem" />
+    <AssociationSet Name="FK_WorkItem_WorkItem" Association="Self.FK_WorkItem_WorkItem">
+      <End Role="Connection" EntitySet="Connections" />
+      <End Role="WorkItem" EntitySet="WorkItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

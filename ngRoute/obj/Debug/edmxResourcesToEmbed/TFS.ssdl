@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TfsConnectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AuditLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LogType" Type="varchar" MaxLength="50" />
+    <Property Name="LogDate" Type="datetime" />
+    <Property Name="SourceEvent" Type="varchar" MaxLength="150" />
+    <Property Name="LogMessage" Type="varchar(max)" />
+    <Property Name="SyncID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Connection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TfsUrl" Type="varchar" MaxLength="256" />
+    <Property Name="Project" Type="varchar" MaxLength="256" />
+    <Property Name="AppName" Type="varchar" MaxLength="256" />
+    <Property Name="AreaPath" Type="varchar" MaxLength="1000" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Query" Type="varchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TfsConnect.dbo.Sprint' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Sprint">
+          <Property Name="SprintNo" Type="varchar" MaxLength="20" />
+        </EntityType>-->
+  <EntityType Name="WorkItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WIID" Type="bigint" />
+    <Property Name="WorkItemType" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Reason" Type="varchar" MaxLength="50" />
+    <Property Name="AreaPath" Type="varchar" MaxLength="256" />
+    <Property Name="IterationPath" Type="varchar" MaxLength="256" />
+    <Property Name="Severity" Type="varchar" MaxLength="20" />
+    <Property Name="Priority" Type="int" />
+    <Property Name="StoryPoints" Type="int" />
+    <Property Name="OriginalEstimate" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="CompletedWork" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="RemainingWork" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="AssignedTo" Type="varchar" MaxLength="256" />
+    <Property Name="ActivatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="ResolvedBy" Type="varchar" MaxLength="256" />
+    <Property Name="ClosedBy" Type="varchar" MaxLength="256" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ActivatedDate" Type="datetime" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="ResolvedDate" Type="datetime" />
+    <Property Name="ClosedDate" Type="datetime" />
+    <Property Name="Tags" Type="nvarchar(max)" />
+    <Property Name="Activity" Type="varchar" MaxLength="50" />
+    <Property Name="ChangedDate" Type="datetime" />
+    <Property Name="udf_ParentLevel" Type="smallint" />
+    <Property Name="udf_PWIID" Type="bigint" />
+    <Property Name="udf_OriginalEstimateAgg" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="udf_CompletedWorkAgg" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="udf_RemainingWorkAgg" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="udf_AppName" Type="varchar" MaxLength="256" />
+    <Property Name="udf_Mode" Type="varchar" MaxLength="50" />
+    <Property Name="udf_FoundIn" Type="varchar" MaxLength="50" />
+    <Property Name="udf_CreatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="udf_AssignedTo" Type="varchar" MaxLength="256" />
+    <Property Name="udf_ActivatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="udf_ResolvedBy" Type="varchar" MaxLength="256" />
+    <Property Name="udf_ClosedBy" Type="varchar" MaxLength="256" />
+    <Property Name="udf_Owner" Type="varchar" MaxLength="256" />
+    <Property Name="udf_ConnectionID" Type="int" />
+    <Property Name="Risk" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReproSteps" Type="nvarchar(max)" />
+    <Property Name="udf_IsActive" Type="bit" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="AcceptanceCriteria" Type="nvarchar(max)" />
+    <Property Name="PWIID" Type="bigint" />
+    <Property Name="udf_TreePath" Type="varchar" MaxLength="1000" />
+    <Property Name="udf_RevisedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TfsConnect.dbo.WorkItemError' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="WorkItemError">
+          <Property Name="udf_ConnectionID" Type="int" />
+          <Property Name="WIID" Type="bigint" />
+          <Property Name="Error" Type="varchar" MaxLength="256" />
+          <Property Name="ProcessDate" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TfsConnect.dbo.WorkItemErrorHistory' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="WorkItemErrorHistory">
+          <Property Name="udf_ConnectionID" Type="int" />
+          <Property Name="WIID" Type="bigint" />
+          <Property Name="Error" Type="varchar" MaxLength="256" />
+          <Property Name="ProcessDate" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TfsConnect.dbo.WorkItemTags' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="WorkItemTags">
+          <Property Name="WIID" Type="bigint" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="100" />
+          <Property Name="udf_ConnectionID" Type="int" />
+          <Property Name="IsSprintTag" Type="bit" />
+        </EntityType>-->
+  <EntityType Name="WorkItemUpdate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConnectionID" Type="int" />
+    <Property Name="WorkItemID" Type="bigint" />
+    <Property Name="RevisedDate" Type="datetime" />
+    <Property Name="RevisedBy" Type="varchar" MaxLength="256" />
+    <Property Name="RevNumber" Type="int" />
+    <Property Name="FieldName" Type="varchar" MaxLength="256" />
+    <Property Name="OldValue" Type="varchar" MaxLength="256" />
+    <Property Name="NewValue" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TfsConnect.dbo.Tags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Index" />
+    </Key>
+    <Property Name="Index" Type="bigint" Nullable="false" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TfsConnect.dbo.vWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vWorkItem">
+    <Key>
+      <PropertyRef Name="Index" />
+      <PropertyRef Name="IsParent" />
+    </Key>
+    <Property Name="Activated Date" Type="datetime" />
+    <Property Name="ActivatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="Application" Type="varchar" MaxLength="256" />
+    <Property Name="AreaPath" Type="varchar" MaxLength="256" />
+    <Property Name="AssignedTo" Type="varchar" MaxLength="256" />
+    <Property Name="Closed Date" Type="datetime" />
+    <Property Name="ClosedBy" Type="varchar" MaxLength="256" />
+    <Property Name="Completed Work" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Completed Work-Agg" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Created Date" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="Due Date" Type="datetime" />
+    <Property Name="Found-In" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="bigint" />
+    <Property Name="Index" Type="bigint" Nullable="false" />
+    <Property Name="IsParent" Type="int" Nullable="false" />
+    <Property Name="Iteration Path" Type="varchar" MaxLength="8000" />
+    <Property Name="Mode" Type="varchar" MaxLength="50" />
+    <Property Name="Original Estimate" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Original Estimate-Agg" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="OwnedBy" Type="varchar" MaxLength="256" />
+    <Property Name="PID" Type="bigint" />
+    <Property Name="Priority" Type="int" />
+    <Property Name="Project" Type="varchar" MaxLength="256" />
+    <Property Name="Reason" Type="varchar" MaxLength="50" />
+    <Property Name="Remaining Work" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Remaining Work-Agg" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Resolved Date" Type="datetime" />
+    <Property Name="ResolvedBy" Type="varchar" MaxLength="256" />
+    <Property Name="Severity" Type="varchar" MaxLength="20" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Story Points" Type="int" />
+    <Property Name="Tags" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="TreePath" Type="varchar" MaxLength="1000" />
+    <Property Name="Url" Type="varchar" MaxLength="602" />
+    <Property Name="udf_ConnectionID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_WorkItem_WorkItem">
+    <End Role="Connection" Type="Self.Connection" Multiplicity="0..1" />
+    <End Role="WorkItem" Type="Self.WorkItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Connection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkItem">
+        <PropertyRef Name="udf_ConnectionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TfsConnectModelStoreContainer">
+    <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Connection" EntityType="Self.Connection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkItem" EntityType="Self.WorkItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkItemUpdate" EntityType="Self.WorkItemUpdate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tags].[Index] AS [Index], 
+    [Tags].[Tag] AS [Tag]
+    FROM [dbo].[Tags] AS [Tags]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vWorkItem" EntityType="Self.vWorkItem" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vWorkItem].[Activated Date] AS [Activated Date], 
+    [vWorkItem].[ActivatedBy] AS [ActivatedBy], 
+    [vWorkItem].[Application] AS [Application], 
+    [vWorkItem].[AreaPath] AS [AreaPath], 
+    [vWorkItem].[AssignedTo] AS [AssignedTo], 
+    [vWorkItem].[Closed Date] AS [Closed Date], 
+    [vWorkItem].[ClosedBy] AS [ClosedBy], 
+    [vWorkItem].[Completed Work] AS [Completed Work], 
+    [vWorkItem].[Completed Work-Agg] AS [Completed Work-Agg], 
+    [vWorkItem].[Created Date] AS [Created Date], 
+    [vWorkItem].[CreatedBy] AS [CreatedBy], 
+    [vWorkItem].[Due Date] AS [Due Date], 
+    [vWorkItem].[Found-In] AS [Found-In], 
+    [vWorkItem].[ID] AS [ID], 
+    [vWorkItem].[Index] AS [Index], 
+    [vWorkItem].[IsParent] AS [IsParent], 
+    [vWorkItem].[Iteration Path] AS [Iteration Path], 
+    [vWorkItem].[Mode] AS [Mode], 
+    [vWorkItem].[Original Estimate] AS [Original Estimate], 
+    [vWorkItem].[Original Estimate-Agg] AS [Original Estimate-Agg], 
+    [vWorkItem].[OwnedBy] AS [OwnedBy], 
+    [vWorkItem].[PID] AS [PID], 
+    [vWorkItem].[Priority] AS [Priority], 
+    [vWorkItem].[Project] AS [Project], 
+    [vWorkItem].[Reason] AS [Reason], 
+    [vWorkItem].[Remaining Work] AS [Remaining Work], 
+    [vWorkItem].[Remaining Work-Agg] AS [Remaining Work-Agg], 
+    [vWorkItem].[Resolved Date] AS [Resolved Date], 
+    [vWorkItem].[ResolvedBy] AS [ResolvedBy], 
+    [vWorkItem].[Severity] AS [Severity], 
+    [vWorkItem].[State] AS [State], 
+    [vWorkItem].[Story Points] AS [Story Points], 
+    [vWorkItem].[Tags] AS [Tags], 
+    [vWorkItem].[Title] AS [Title], 
+    [vWorkItem].[Type] AS [Type], 
+    [vWorkItem].[TreePath] AS [TreePath], 
+    [vWorkItem].[Url] AS [Url], 
+    [vWorkItem].[udf_ConnectionID] AS [udf_ConnectionID], 
+    [vWorkItem].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[vWorkItem] AS [vWorkItem]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_WorkItem_WorkItem" Association="Self.FK_WorkItem_WorkItem">
+      <End Role="Connection" EntitySet="Connection" />
+      <End Role="WorkItem" EntitySet="WorkItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

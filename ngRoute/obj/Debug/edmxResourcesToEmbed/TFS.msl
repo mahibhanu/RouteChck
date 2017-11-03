@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TfsConnectModelStoreContainer" CdmEntityContainer="TfsConnectEntities">
+    <EntitySetMapping Name="AuditLogs">
+      <EntityTypeMapping TypeName="TfsConnectModel.AuditLog">
+        <MappingFragment StoreEntitySet="AuditLog">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LogType" ColumnName="LogType" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="SourceEvent" ColumnName="SourceEvent" />
+          <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
+          <ScalarProperty Name="SyncID" ColumnName="SyncID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Connections">
+      <EntityTypeMapping TypeName="TfsConnectModel.Connection">
+        <MappingFragment StoreEntitySet="Connection">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TfsUrl" ColumnName="TfsUrl" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="AppName" ColumnName="AppName" />
+          <ScalarProperty Name="AreaPath" ColumnName="AreaPath" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkItems">
+      <EntityTypeMapping TypeName="TfsConnectModel.WorkItem">
+        <MappingFragment StoreEntitySet="WorkItem">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WIID" ColumnName="WIID" />
+          <ScalarProperty Name="WorkItemType" ColumnName="WorkItemType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="AreaPath" ColumnName="AreaPath" />
+          <ScalarProperty Name="IterationPath" ColumnName="IterationPath" />
+          <ScalarProperty Name="Severity" ColumnName="Severity" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="StoryPoints" ColumnName="StoryPoints" />
+          <ScalarProperty Name="OriginalEstimate" ColumnName="OriginalEstimate" />
+          <ScalarProperty Name="CompletedWork" ColumnName="CompletedWork" />
+          <ScalarProperty Name="RemainingWork" ColumnName="RemainingWork" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+          <ScalarProperty Name="ActivatedBy" ColumnName="ActivatedBy" />
+          <ScalarProperty Name="ResolvedBy" ColumnName="ResolvedBy" />
+          <ScalarProperty Name="ClosedBy" ColumnName="ClosedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ActivatedDate" ColumnName="ActivatedDate" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="ResolvedDate" ColumnName="ResolvedDate" />
+          <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+          <ScalarProperty Name="udf_ParentLevel" ColumnName="udf_ParentLevel" />
+          <ScalarProperty Name="udf_PWIID" ColumnName="udf_PWIID" />
+          <ScalarProperty Name="udf_OriginalEstimateAgg" ColumnName="udf_OriginalEstimateAgg" />
+          <ScalarProperty Name="udf_CompletedWorkAgg" ColumnName="udf_CompletedWorkAgg" />
+          <ScalarProperty Name="udf_RemainingWorkAgg" ColumnName="udf_RemainingWorkAgg" />
+          <ScalarProperty Name="udf_AppName" ColumnName="udf_AppName" />
+          <ScalarProperty Name="udf_Mode" ColumnName="udf_Mode" />
+          <ScalarProperty Name="udf_FoundIn" ColumnName="udf_FoundIn" />
+          <ScalarProperty Name="udf_CreatedBy" ColumnName="udf_CreatedBy" />
+          <ScalarProperty Name="udf_AssignedTo" ColumnName="udf_AssignedTo" />
+          <ScalarProperty Name="udf_ActivatedBy" ColumnName="udf_ActivatedBy" />
+          <ScalarProperty Name="udf_ResolvedBy" ColumnName="udf_ResolvedBy" />
+          <ScalarProperty Name="udf_ClosedBy" ColumnName="udf_ClosedBy" />
+          <ScalarProperty Name="udf_Owner" ColumnName="udf_Owner" />
+          <ScalarProperty Name="udf_ConnectionID" ColumnName="udf_ConnectionID" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="ReproSteps" ColumnName="ReproSteps" />
+          <ScalarProperty Name="udf_IsActive" ColumnName="udf_IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AcceptanceCriteria" ColumnName="AcceptanceCriteria" />
+          <ScalarProperty Name="PWIID" ColumnName="PWIID" />
+          <ScalarProperty Name="udf_TreePath" ColumnName="udf_TreePath" />
+          <ScalarProperty Name="udf_RevisedDate" ColumnName="udf_RevisedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkItemUpdates">
+      <EntityTypeMapping TypeName="TfsConnectModel.WorkItemUpdate">
+        <MappingFragment StoreEntitySet="WorkItemUpdate">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
+          <ScalarProperty Name="WorkItemID" ColumnName="WorkItemID" />
+          <ScalarProperty Name="RevisedDate" ColumnName="RevisedDate" />
+          <ScalarProperty Name="RevisedBy" ColumnName="RevisedBy" />
+          <ScalarProperty Name="RevNumber" ColumnName="RevNumber" />
+          <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="TfsConnectModel.Tag">
+        <MappingFragment StoreEntitySet="Tags">
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="Tag1" ColumnName="Tag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vWorkItems">
+      <EntityTypeMapping TypeName="TfsConnectModel.vWorkItem">
+        <MappingFragment StoreEntitySet="vWorkItem">
+          <ScalarProperty Name="Activated_Date" ColumnName="Activated Date" />
+          <ScalarProperty Name="ActivatedBy" ColumnName="ActivatedBy" />
+          <ScalarProperty Name="Application" ColumnName="Application" />
+          <ScalarProperty Name="AreaPath" ColumnName="AreaPath" />
+          <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+          <ScalarProperty Name="Closed_Date" ColumnName="Closed Date" />
+          <ScalarProperty Name="ClosedBy" ColumnName="ClosedBy" />
+          <ScalarProperty Name="Completed_Work" ColumnName="Completed Work" />
+          <ScalarProperty Name="Completed_Work_Agg" ColumnName="Completed Work-Agg" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created Date" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Due_Date" ColumnName="Due Date" />
+          <ScalarProperty Name="Found_In" ColumnName="Found-In" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+          <ScalarProperty Name="Iteration_Path" ColumnName="Iteration Path" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="Original_Estimate" ColumnName="Original Estimate" />
+          <ScalarProperty Name="Original_Estimate_Agg" ColumnName="Original Estimate-Agg" />
+          <ScalarProperty Name="OwnedBy" ColumnName="OwnedBy" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Remaining_Work" ColumnName="Remaining Work" />
+          <ScalarProperty Name="Remaining_Work_Agg" ColumnName="Remaining Work-Agg" />
+          <ScalarProperty Name="Resolved_Date" ColumnName="Resolved Date" />
+          <ScalarProperty Name="ResolvedBy" ColumnName="ResolvedBy" />
+          <ScalarProperty Name="Severity" ColumnName="Severity" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Story_Points" ColumnName="Story Points" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TreePath" ColumnName="TreePath" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="udf_ConnectionID" ColumnName="udf_ConnectionID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

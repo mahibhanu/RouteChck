@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS-SPA</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/datePicker")
+    @RenderSection("scripts", false)
+    <script src="~/TFSConnect.js"></script>
+    <script>
+
+        $(document).ready(function () {
+          
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("active");
+            });
+          
+        });
+
+        $(document).on('click', '.clickable', function (e) {
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.panel-body').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon glyphicon-minus').addClass('glyphicon glyphicon-plus');
+            } else {
+                $this.parents('.panel').find('.panel-body').show();
+                $this.parents('.panel').find('.panel-body').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon glyphicon-plus').addClass('glyphicon glyphicon-minus');
+
+            }
+        });
+    </script>
+
+</head>
+<body>
+
+
+    @*<div >
+            <img id="spinner" src="~/Content/themes/base/images/Spinner.gif"  style="display:none;">
+
+        </div>*@
+    <div class="modal" id="spinner" data-backdrop="static" data-keyboard="false" style="display:none;">
+
+        <div class="modal-body">
+            <div id="ajax_loader">
+                <img src="~/Content/themes/base/images/ajax-loader.gif" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="active" ng-app="TFSApp" ng-controller="TFSMaster">
+
+        <!-- Sidebar -->
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul id="sidebar_menu" class="sidebar-nav">
+                <li class="sidebar-brand"><a id="menu-toggle" href="#"><span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+            </ul>
+            <ul class="sidebar-nav" id="sidebar">
+                <li><a href="/Resource">Resource<span class="sub_icon glyphicon glyphicon-home"></span></a></li>
+                <li><a href="/Application">Application<span class="sub_icon glyphicon glyphicon-signal"></span></a></li>
+
+            </ul>
+        </div>
+
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+            <!-- Keep all page content within the page-content inset div! -->
+            <div class="page-content inset">
+                <div class="row">
+                    <div class="container body-content">
+                        @RenderBody()
+                        <div ng-view></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
